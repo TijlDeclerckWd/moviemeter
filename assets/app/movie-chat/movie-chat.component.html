@@ -1,0 +1,34 @@
+
+
+<div class="col-md-8 col-md-offset-2">
+<div id="movie-chat">
+    <h2>Movie Chat</h2>
+    <div id="chat-window" #chatWindow>
+    <ul class="list-group">
+        <li
+            [ngClass]="{
+                'leftAligned': !isItMyMsg(message.fullName),
+                'rightAligned': isItMyMsg(message.fullName)
+            }"
+            *ngFor="let message of messages"
+            class="list-group-item chat-message"
+        >
+            <p>{{message.fullName}}</p>
+            <p>{{message.message}}</p>
+            <div *ngIf="message.minutesAgo < 60; then list else noList"></div>
+            <ng-template #list>
+                <p class="timestamp">{{message.minutesAgo}} minute(s) ago</p>
+            </ng-template>
+            <ng-template #noList>
+                <p class="timestamp">{{message.minutesAgo/60 | number: '1.0-0'}} hours ago</p>
+            </ng-template>
+        </li>
+    </ul>
+    </div>
+    <p id="fullName">{{fullName}}</p>
+    <input (keyup.enter)="sendMessageToServer(messageInput.value, chatWindow, messageInput)" id="message" type="text" #messageInput placeholder="Message" />
+    <button (click)="sendMessageToServer(messageInput.value, chatWindow, messageInput)" id="send">Send</button>
+</div>
+</div>
+
+

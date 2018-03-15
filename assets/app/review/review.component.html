@@ -1,0 +1,26 @@
+    <ng-container *ngIf="!!movie">
+        <app-review-list [movie]="movie"></app-review-list>
+    </ng-container>
+
+
+    <hr>
+
+    <form ngNativeValidate (ngSubmit)="onSubmit(f)" #f="ngForm">
+        <div class="form-group">
+            <label for="review">Write A Review:</label>
+            <textarea
+                    #textArea
+                    (keyup.enter)="onSubmit(f)"
+                    rows="4"
+                    cols="50"
+                    type="text"
+                    id="review"
+                    ngModel
+                    class="form-control"
+                    name="review"
+                    required
+            ></textarea>
+        </div>
+        <button type="button" class="btn btn-danger" (click)="onClear(f)">Clear</button>
+        <button class="btn btn-primary" type="submit">Save</button>
+    </form>

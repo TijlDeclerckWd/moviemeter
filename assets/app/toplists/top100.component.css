@@ -1,0 +1,15 @@
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+
+.list-group h3{
+    display: inline-block;
+}
+
+.glyphicon-star {
+    color: gold;
+    font-size: 2em;
+}

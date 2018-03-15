@@ -1,0 +1,23 @@
+<div @topListAnimations>
+    <div class="col-md-8 col-md-offset-2 listDiv">
+        <h1 *ngIf="currentRoute==='best'">Best Movies:</h1>
+        <h1 *ngIf="currentRoute==='worst'">Worst Movies:</h1>
+        <h1 *ngIf="currentRoute==='bestNew'">Best New Movies:</h1>
+        <div class="list-group">
+            <a
+                    @fadeIn
+                    [routerLink]="['/movies', movie?._id]"
+                    href="#"
+                    *ngFor="let movie of movies;
+                let i = index"
+                    [attr.data-index]="i"
+                    class="list-group-item"
+            >
+                <h3>{{ i+ 1 }}</h3>
+                <h3>{{movie?.title}}</h3>
+                <span class="glyphicon glyphicon-star"></span>
+                <span><h3>{{movie?.averageRating}}</h3></span>
+            </a>
+        </div>
+    </div>
+</div>

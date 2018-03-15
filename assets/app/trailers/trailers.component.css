@@ -1,0 +1,37 @@
+.col {
+    margin-top: 4%;
+}
+
+.previousButton {
+    width: 90px;
+    height: 40px;
+    border: 1px solid black;
+    border-radius: 5px;
+    text-align: center;
+    padding: 0 10px;
+    position: absolute;
+    left: 10px;
+    top: 50%;
+}
+
+.nextButton {
+    width: 90px;
+    height: 40px;
+    border: 1px solid black;
+    padding: 0 10px;
+    text-align: center;
+    border-radius: 5px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+}
+
+.trailerZone {
+    position: relative;
+    border: 2px solid black;
+    border-radius: 5px;
+    width: 900px;
+    height: 500px;
+    margin: 0 auto;
+}
+

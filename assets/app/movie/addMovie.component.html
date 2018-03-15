@@ -1,0 +1,82 @@
+<div class="col-md-8 col-md-offset-2">
+    <h1>Add Movie to the Library:</h1>
+    <form ngNativeValidate (ngSubmit)="onSubmit(f)" #f="ngForm">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input
+                    type="text"
+                    id="title"
+                    class="form-control"
+                    [ngModel]="message?.content"
+                    name="title"
+                    required
+            >
+            <label for="year">Year</label>
+            <input
+                    type="text"
+                    id="year"
+                    class="form-control"
+                    [ngModel]="message?.content"
+                    name="year"
+                    required
+            >
+            <label for="description">Description</label>
+            <input
+                    type="text"
+                    id="description"
+                    class="form-control"
+                    [ngModel]="message?.content"
+                    name="description"
+                    required
+            >
+            <label for="genre">Genre</label>
+            <input
+                    type="text"
+                    id="genre"
+                    class="form-control"
+                    [ngModel]="message?.content"
+                    name="genre"
+                    required
+            >
+            <label for="director">Director</label>
+            <input
+                    type="text"
+                    id="director"
+                    class="form-control"
+                    [ngModel]="message?.content"
+                    name="director"
+                    required
+            >
+            <label for="length">Length</label>
+            <input
+                    type="text"
+                    id="length"
+                    class="form-control"
+                    [ngModel]="message?.content"
+                    name="length"
+                    required
+            >
+            <label for="actors">Actors</label>
+            <input
+                    type="text"
+                    id="actors"
+                    class="form-control"
+                    [ngModel]="message?.content"
+                    name="actors"
+                    required
+            >
+            <label for="image">Image URL</label>
+            <input
+                    type="text"
+                    id="image"
+                    class="form-control"
+                    [ngModel]="message?.content"
+                    name="image"
+                    required
+            >
+
+        </div>
+        <button type="button" class="btn btn-danger" (click)="onClear(f)">Clear</button>
+        <button class="btn btn-primary" type="submit">Save</button>
+    </form>
+</div>

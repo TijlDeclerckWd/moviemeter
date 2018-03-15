@@ -1,0 +1,46 @@
+<header class="row">
+    <nav class="col-md-8 col-md-offset-2">
+        <a routerLink="/"><h1 class="title"> Moviemeter</h1></a>
+        <ul class="stats">
+            <li>{{ websiteStats?.movieCount }} movie<span *ngIf="websiteStats?.movieCount > 1">s</span> |</li>
+            <li>{{ websiteStats?.userCount }} user<span *ngIf="websiteStats?.userCount > 1">s</span>  |</li>
+            <li>{{ websiteStats?.ratingCount }} movie rating<span *ngIf="websiteStats?.ratingCount > 1">s</span> |</li>
+            <li>{{ websiteStats?.reviewCount }} movie review<span *ngIf="websiteStats?.reviewCount > 1">s</span></li>
+        </ul>
+        <ul class="nav navbar-nav">
+            <li routerLinkActive="active"><a routerLink="/toplists">Top Lists</a></li>
+            <li routerLinkActive="active"><a routerLink="/cinema">Cinema</a></li>
+            <li routerLinkActive="active"><a routerLink="/addmovie">Add Movie</a></li>
+            <!-- Try to implement a ngbootstrap dropdown to create space on the navigation bar-->
+            <li routerLinkActive="active"><a routerLink="/movieChat">Movie Chat</a></li>
+            <li *ngIf="!isLoggedIn()" routerLinkActive="active"><a routerLink="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li *ngIf="!isLoggedIn()" routerLinkActive="active"><a routerLink="/login"><span class="glyphicon glyphicon-user"></span> Login</a></li>
+            <li *ngIf="isLoggedIn()" routerLinkActive="active"><a routerLink="/logout"><span class="glyphicon glyphicon-user"></span> Log Out</a></li>
+            <li class="last">
+                        <div id="custom-search-input">
+                            <div class="input-group col-md-12">
+                                <input (keyup)="getMovies(i.value)" #i type="text" class="form-control input-lg" placeholder="Buscar" />
+                                <span class="input-group-btn">
+                        <button class="btn btn-info btn-lg" type="button">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </span>
+                            </div>
+                        </div>
+                        <ul [ngStyle]="{'display':searchStatus}" class="searchSugList list-group">
+                            <a     *ngFor="let searchResult of searchResults"
+                                    [routerLink]="['/movies', searchResult._id]"
+                                    style="color:black"
+                                    (click)="clearInput(i)"
+                                    class="searchLi list-group-item list-group-item-action">
+                                {{searchResult.title}}</a>
+                        </ul>
+                    </li>
+        </ul>
+
+
+    </nav>
+</header>
+<div class="row spacing">
+    <router-outlet></router-outlet>
+</div>

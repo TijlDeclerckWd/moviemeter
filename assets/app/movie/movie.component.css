@@ -1,0 +1,27 @@
+.container {
+    margin-top: 5%;
+}
+
+.col-md-4 img {
+    max-height: 400px;
+    width: 100%;
+}
+
+.glyphicon-star, .glyphicon-star-empty {
+    color: gold;
+    font-size: 3em;
+}
+
+span h1 {
+    display: inline;
+    position: relative;
+    top: -7px;
+}
+
+hr {
+    border: none;
+    height: 2px;
+    /* Set the hr color */
+    color: #333; /* old IE */
+    background-color: #333; /* Modern Browsers */
+}
