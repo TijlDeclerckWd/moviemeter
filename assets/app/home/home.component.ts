@@ -31,6 +31,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     isLoggedIn:Boolean;
     fullName;
     trailers;
+    trailerIds;
 
     // DOM sanitizer is used for making custom adjustments to embedded youtube videos, it is not used here because
     // there were issues with the browser making server requests non-stop
@@ -46,8 +47,8 @@ export class HomeComponent implements OnInit, OnDestroy {
             .takeUntil(this.ngUnsubscribe)
             .subscribe(trailers => {
                 this.trailers = trailers.result;
+                this.trailerIds = trailers.trailerIds
 
-                // here you should make an array of of all the trailerIds
             })
     }
 

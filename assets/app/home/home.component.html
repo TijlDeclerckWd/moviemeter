@@ -1,4 +1,3 @@
-<h1>helloooooo</h1>
 <div @fade>
     <div class="col-md-8 col-md-offset-2">
         <h5>Welcome to MovieMeter! <span *ngIf="isLoggedIn"> You are logged in as {{fullName}}</span></h5>
@@ -8,7 +7,7 @@
         <ul>
             <li @fade [routerLink]="['/trailers', trailer.body.items[0].id.videoId]" class="trailerItem" *ngFor="let trailer of trailers">
                 <img src="{{trailer.body.items[0].snippet.thumbnails.high.url}}" alt="nope">
-                <div id="{{trailer.body.items[0].id.videoId}}" #trailerTitle [routerLink]="['/trailers']" [queryParams]="{ id: trailer.body.items[0].id.videoId}" class="trailerTitle"><h5>{{trailer.movie.title}}</h5></div>
+                <div id="{{trailer.body.items[0].id.videoId}}" #trailerTitle [routerLink]="['/trailers']" [queryParams]="{ids: trailerIds.join('&'), chosenId: trailer.body.items[0].id.videoId}" class="trailerTitle"><h5>{{trailer.movie.title}}</h5></div>
             </li>
         </ul>
         <div>

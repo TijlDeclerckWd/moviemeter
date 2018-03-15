@@ -93,6 +93,12 @@ getMovie(id) {
 
     getTrailers(){
         return this.http2.get('http://localhost:3200/movies/getTrailers')
+            .map( result => {
+                console.log(result);
+                result.trailerIds = [result.result[0].body.items[0].id.videoId, result.result[1].body.items[0].id.videoId, result.result[2].body.items[0].id.videoId]
+                console.log(result);
+                return result;
+            })
             .pipe(catchError(this.handleError)
             )
     }
