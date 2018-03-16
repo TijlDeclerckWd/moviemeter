@@ -16,6 +16,15 @@
             <li *ngIf="!isLoggedIn()" routerLinkActive="active"><a routerLink="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
             <li *ngIf="!isLoggedIn()" routerLinkActive="active"><a routerLink="/login"><span class="glyphicon glyphicon-user"></span> Login</a></li>
             <li *ngIf="isLoggedIn()" routerLinkActive="active"><a routerLink="/logout"><span class="glyphicon glyphicon-user"></span> Log Out</a></li>
+            <li ngbDropdown #mydrop="ngbDropdown" *ngIf="isLoggedIn()" routerLinkActive="active">
+                <a id="dropdownManual" ngbDropdownToggle><span class="glyphicon glyphicon-user"></span> Profile
+                    <span class="caret"></span></a>
+                <ul ngbDropdownMenu class="dropDownMenu" aria-labelledby="dropdownManual">
+                    <li class="dropdown-item"><a routerLink="/user/profile"> Profile</a></li>
+                    <li class="dropdown-item"><a href="#"> Something else</a></li>
+                    <li class="dropdown-item"><a href="#">Page 1-3</a></li>
+                </ul>
+            </li>
             <li class="last">
                         <div id="custom-search-input">
                             <div class="input-group col-md-12">

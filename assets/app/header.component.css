@@ -88,4 +88,10 @@ a  {
     width: 100%;
 }
 
+.dropDownMenu {
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+}
+
 

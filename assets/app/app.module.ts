@@ -31,7 +31,8 @@ import {HttpClientModule} from "@angular/common/http";
 import {MovieChatComponent} from "./movie-chat/movie-chat.component";
 import {MovieChatService} from "./movie-chat/movie-chat.service";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {TrailersComponent} from "./trailers/trailers.component";
+import {SafePipe, TrailersComponent} from "./trailers/trailers.component";
+import {ProfileComponent} from "./user/profile.component";
 
 
 
@@ -45,6 +46,7 @@ import {TrailersComponent} from "./trailers/trailers.component";
         LoginComponent,
         LogoutComponent,
         MovieChatComponent,
+        ProfileComponent,
         ReviewComponent,
         ReviewListComponent,
         TrailersComponent,
@@ -52,7 +54,8 @@ import {TrailersComponent} from "./trailers/trailers.component";
         Top100Component,
         MovieComponent,
         AddMovieComponent,
-        SignupComponent
+        SignupComponent,
+        SafePipe
     ],
     imports: [
         BrowserModule,

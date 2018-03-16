@@ -20,7 +20,7 @@
                         </div>
                     </div>
                         <div *ngIf="checkRating()">
-                            <h1>{{rating}}</h1>
+                            <h1 class="rating">{{rating}}</h1>
                         </div>
             </div>
         </div>
@@ -33,6 +33,22 @@
 </div>
 
 <hr class="col-md-8 col-md-offset-2">
+
+<div class="col-md-8 col-md-offset-2 trailerContainer">
+    <iframe
+            class="trailer"
+            width="70%"
+            height="100%"
+            [src]="('https://www.youtube.com/embed/' + movie?.trailer) | safe"
+            frameborder="0"
+            allow="autoplay: encrypted-media"
+            allowfullscreen="">
+    </iframe>
+</div>
+
+<hr class="col-md-8 col-md-offset-2">
+
+
 
 <div class="col-md-8 col-md-offset-2">
     <ng-container *ngIf="!!movie">

@@ -11,6 +11,7 @@ import {LogoutComponent} from "./auth/logout.component";
 import {RoleGuardService} from "./auth/role-guard.service";
 import {MovieChatComponent} from "./movie-chat/movie-chat.component";
 import {TrailersComponent} from "./trailers/trailers.component";
+import {ProfileComponent} from "./user/profile.component";
 
 
 const APP_ROUTES: Routes = [
@@ -43,6 +44,10 @@ const APP_ROUTES: Routes = [
     {
         path: 'trailers',
         component: TrailersComponent
+    },
+    {
+        path: 'user/profile',
+        component: ProfileComponent
     },
     {
         path: 'login',

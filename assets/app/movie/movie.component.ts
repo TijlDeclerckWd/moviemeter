@@ -1,8 +1,17 @@
-import {Component, OnDestroy, OnInit} from "@angular/core";
+import {Component, OnDestroy, OnInit, Pipe, PipeTransform} from "@angular/core";
 import { MovieService} from "./movie.service";
 import {ActivatedRoute} from "@angular/router";
 import {Subject} from "rxjs/Subject";
+import {DomSanitizer} from "@angular/platform-browser";
 
+
+@Pipe({ name: 'safe' })
+export class SafePipe implements PipeTransform {
+    constructor(private sanitizer: DomSanitizer) {}
+    transform(url) {
+        return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+    }
+}
 
 @Component({
     selector: 'app-movie',
@@ -16,6 +25,7 @@ export class MovieComponent implements OnInit, OnDestroy {
     movie;
     movieId;
     averageRating;
+
 
     constructor(private movieService: MovieService, private route: ActivatedRoute){
 
@@ -59,7 +69,7 @@ export class MovieComponent implements OnInit, OnDestroy {
     }
 
     addRating(score) {
-        var userId = localStorage.getItem('userId');
+        let userId = localStorage.getItem('userId');
 
         this.movieService.addRating(score, userId, this.movie._id)
             .takeUntil(this.ngUnsubscribe)
