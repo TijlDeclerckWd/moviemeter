@@ -34,7 +34,7 @@
 
 <hr class="col-md-8 col-md-offset-2">
 
-<div class="col-md-8 col-md-offset-2 trailerContainer">
+<div *ngIf="movie?.trailer" class="col-md-8 col-md-offset-2 trailerContainer">
     <iframe
             class="trailer"
             width="70%"
@@ -44,9 +44,10 @@
             allow="autoplay: encrypted-media"
             allowfullscreen="">
     </iframe>
+    <hr>
 </div>
 
-<hr class="col-md-8 col-md-offset-2">
+
 
 
 

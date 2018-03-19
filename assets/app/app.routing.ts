@@ -50,8 +50,8 @@ const APP_ROUTES: Routes = [
         component: ProfileComponent
     },
     {
-        path: 'login',
-        component: LoginComponent
+        path: 'signup',
+        component: SignupComponent
     },
     {
         path: 'login',

@@ -26,7 +26,7 @@ export class SignupComponent implements OnInit {
             .subscribe(
                 data => {
                         console.log(data)
-                            this.route.navigateByUrl('/')
+                            this.route.navigateByUrl('/login')
                         ,
                         error => console.error(error)
                 }

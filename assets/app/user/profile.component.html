@@ -1,3 +1,29 @@
 <div class="col-md-8 col-offset-2">
 
+    <div *ngIf="statistics" class=" col-md-8 col-md-offset-2 statisticsSection">
+
+        <h4>Registered: {{statistics.registerDate | date:'long'}}</h4>
+        <h4>Last Login: {{statistics.lastLogin | date:'long'}}</h4>
+        <br>
+        <h4>Amount of Ratings: {{statistics.amountOfRatings}}</h4>
+        <h4>Average Rating: {{statistics.averageRating | number:'1.0-2'}} </h4>
+        <h4>Standard Deviation: {{statistics.standardDeviation | number:'1.0-2'}}</h4>
+        <br>
+        <h4>Amount Of Reviews: {{statistics.amountOfReviews}}</h4>
+    </div>
+
+    <hr class="col-md-8 col-md-offset-2">
+
+    <div class="top10Section col-md-8 col-md-offset-2">
+        <h2>Top 10:</h2>
+        <h4 *ngIf="!user.top10.filledIn; else top10">You have not chosen your top 10</h4>
+
+        <ng-template #top10>
+            <ul>
+                <li>helooooooo</li>
+            </ul>
+        </ng-template>
+
+    </div>
+
 </div>

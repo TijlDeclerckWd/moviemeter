@@ -9,8 +9,16 @@ var schema = new Schema({
     password: {type: String, required: true},
     email: {type: String, required: true, unique:true},
     ratings: [{type: Schema.Types.ObjectId, ref: 'Rating'}],
-    reviews: [{type: Schema.Types.ObjectId, ref: 'Review'}]
+    reviews: [{type: Schema.Types.ObjectId, ref: 'Review'}],
+    registerDate: Date,
+    lastLogin: Date,
+    top10: {
+        filledIn: {type: Boolean, default: false},
+        top10List: []
+    }
 }, { usePushEach: true });
+
+// I still have to add the code for last logged in and the registerdate.
 
 schema.plugin(mongooseUniqueValidator);
 
