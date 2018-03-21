@@ -10,6 +10,7 @@ import {MovieService} from "../movie/movie.service";
 export class SearchComponent implements OnInit, OnChanges {
 
     searchStatus = 'none';
+    @Input('number') number;
     @Input('searchInput') searchInput;
     @Output('chosenMovie') chosenMovie = new EventEmitter();
     searchResults;
@@ -17,13 +18,13 @@ export class SearchComponent implements OnInit, OnChanges {
     constructor(private movieService: MovieService){}
 
     ngOnChanges(){
-        console.log('change detected');
-        console.log(this.searchInput);
-        this.movieService.getMovies(this.searchInput)
-            .subscribe( result => {
-                this.searchStatus = 'block';
-                this.searchResults = result.obj;
-            })
+        if(this.searchInput[0] === this.number){
+            this.movieService.getMovies(this.searchInput)
+                .subscribe( result => {
+                    this.searchStatus = 'block';
+                    this.searchResults = result.obj;
+                })
+        }
     }
 
     ngOnInit(){

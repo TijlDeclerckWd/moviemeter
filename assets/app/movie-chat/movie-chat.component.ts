@@ -10,7 +10,6 @@ import { MovieChatService} from "./movie-chat.service";
 export class MovieChatComponent implements OnInit{
 
     fullName;
-    title = 'Websocket Demo';
     url;
     ws;
     messages = [];

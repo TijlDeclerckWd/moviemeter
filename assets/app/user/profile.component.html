@@ -19,13 +19,12 @@
         <div *ngIf="!user?.top10.filledIn; else top10" class="inputTop10Div">
             <h4>You have not chosen your top 10</h4>
             <button (click)="showInput = true" class="btn btn-primary">Create a top 10</button>
-
-            <form #f="ngForm" (ngSubmit)="onSubmit(f)" *ngIf="showInput">
-                <div *ngFor="let number of repeat">
-                    <app-top10Input [number]="number"></app-top10Input>
-                    <app-search [searchInput]="input1" (chosenMovie)="changeInput($event)"></app-search>
-                </div>
-                <button type="submit" class="btn btn-primary">Save Your Top 10</button>
+            <form #f="ngForm" (ngSubmit)="onSubmit()" *ngIf="showInput">
+                    <div *ngFor="let input of top10Inputs">
+                        <span>{{input.number}}</span> <input type="text" (keyup)="newInput(inputEl)" value="{{input.value}}" #inputEl class="form-control" name="{{input.number}}" [attr.data-index]="input.numbernumber">
+                        <app-search [number]="input.number" [searchInput]="activeSearch" (chosenMovie)="changeInput($event)"></app-search>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save Your Top 10</button>
             </form>
         </div>
 
