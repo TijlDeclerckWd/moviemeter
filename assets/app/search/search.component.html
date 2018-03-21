@@ -1,0 +1,9 @@
+<ul [ngStyle]="{'display':searchStatus}" class="list-group">
+    <li
+            *ngFor="let searchResult of searchResults"
+           (click)="changeInput(searchResult.title)"
+           style="color:black"
+           class="searchResult list-group-item list-group-item-action">
+        {{searchResult.title}}
+    </li>
+</ul>

@@ -33,6 +33,7 @@ import {MovieChatService} from "./movie-chat/movie-chat.service";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {SafePipe, TrailersComponent} from "./trailers/trailers.component";
 import {ProfileComponent} from "./user/profile.component";
+import {SearchComponent} from "./search/search.component";
 
 
 
@@ -54,6 +55,7 @@ import {ProfileComponent} from "./user/profile.component";
         Top100Component,
         MovieComponent,
         AddMovieComponent,
+        SearchComponent,
         SignupComponent,
         SafePipe
     ],
