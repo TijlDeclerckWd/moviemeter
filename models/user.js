@@ -15,6 +15,10 @@ var schema = new Schema({
     top10: {
         filledIn: {type: Boolean, default: false},
         top10List: []
+    },
+    profilePicture: {
+        uploaded: {type: Boolean, default: false},
+        name: {type: String, default: ''}
     }
 }, { usePushEach: true });
 

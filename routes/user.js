@@ -5,6 +5,35 @@ var async = require('async');
 var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
 
+var multer = require('multer');
+var path = require('path');
+var storage = multer.diskStorage(
+    { destination: function (req, file, cb) { cb(null, './public/uploads') },
+        filename: function (req, file, cb) { cb(null, Date.now() + path.extname(file.originalname)) }
+    }
+    );
+var upload = multer({ storage: storage });
+
+
+router.post('/addTop10/:userId', function(req, res){
+   User.find({'_id': req.params.userId}, function (err, user) {
+       user[0].top10.filledIn = true;
+       user[0].top10.top10List = req.body;
+       user[0].save(function(err, user){
+           if (err) {
+               return res.status(500).json({
+                   title: 'An error occurred',
+                   error: err
+               });
+           }
+           res.status(200).json({
+               message: 'User retrieved',
+               obj: user
+           });
+       });
+   });
+});
+
 router.get('/getUser/:id', function(req,res,next){
     User.find({'_id': req.params.id}, function(err, user) {
         if (err) {
@@ -133,7 +162,31 @@ router.post('/signin', function(req, res, next) {
                 fullName: user.firstName + ' ' + user.lastName
             });
         });
+    })
+});
 
+router.post('/uploadProfilePicture/:userId', upload.single('fileKey'), function(req, res){
+    console.log(req.file);
+    User.find({'_id': req.params.userId}, function(err, user){
+        user.profilePicture.name = req.file.filename;
+        user.profilePicture.uploaded = true;
+        user.save(function(err, user){
+            if (err) {
+                return res.status(500).json({
+                    title: 'An error occurred',
+                    error: err
+                });
+            }
+            res.status(200).json({
+                message: 'User created',
+                imageUrl: user.profilePicturne.name
+            });
+        })
+    });
+
+
+    res.status(200).json({
+        msg: 'guuud'
     })
 });
 

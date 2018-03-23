@@ -2,8 +2,7 @@ import {Injectable} from "@angular/core";
 import 'rxjs/rx';
 import {Headers, Http, Response} from "@angular/http";
 import {Observable} from "rxjs/Observable";
-import {Movie} from "../movie/movie.model";
-import {Review} from "./review.model";
+
 
 
 

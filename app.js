@@ -17,7 +17,6 @@ var reviewRoutes = require('./routes/reviews');
 var ratingRoutes = require('./routes/ratings');
 var movieChatRoutes = require('./routes/movieChat');
 
-
 var app = express();
 
 mongoose.connect('mongodb://localhost:27017/moviemeter');
@@ -33,6 +32,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 app.use(function(req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');

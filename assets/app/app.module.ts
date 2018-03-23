@@ -34,6 +34,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {SafePipe, TrailersComponent} from "./trailers/trailers.component";
 import {ProfileComponent} from "./user/profile.component";
 import {SearchComponent} from "./search/search.component";
+import {UserService} from "./user/user.service";
 
 
 
@@ -80,7 +81,8 @@ import {SearchComponent} from "./search/search.component";
         MovieChatService,
         ReviewService,
         RoleGuardService,
-        ToplistsService
+        ToplistsService,
+        UserService
     ]
 })
 export class AppModule {

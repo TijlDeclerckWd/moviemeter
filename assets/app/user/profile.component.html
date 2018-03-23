@@ -1,6 +1,21 @@
-<div class="col-md-8 col-offset-2">
+<div class="col-md-8 col-offset-2 profile">
 
-    <div *ngIf="statistics" class=" col-md-8 col-md-offset-2 statisticsSection">
+    <div class="profilePicSection">
+        <div *ngIf="!user?.profilePicture.uploaded; else profilePic" class="form-group">
+            <label for="file">Choose File</label>
+            <input type="file"
+                   id="file"
+                   (change)="handleFileInput($event.target.files)">
+        </div>
+        <ng-template #profilePic>
+            <h1>helloooo</h1>
+        </ng-template>
+    </div>
+
+    <hr>
+    <div *ngIf="statistics" class="statisticsSection">
+
+        <h2><u>Statistics:</u></h2>
 
         <h4>Registered: {{statistics.registerDate | date:'long'}}</h4>
         <h4>Last Login: {{statistics.lastLogin | date:'long'}}</h4>
@@ -12,11 +27,11 @@
         <h4>Amount Of Reviews: {{statistics.amountOfReviews}}</h4>
     </div>
 
-    <hr class="col-md-8 col-md-offset-2">
+    <hr>
 
-    <div class="top10Section col-md-8 col-md-offset-2">
+    <div class="top10Section">
         <h2>Top 10:</h2>
-        <div *ngIf="!user?.top10.filledIn; else top10" class="inputTop10Div">
+        <div *ngIf="!user?.top10.filledIn; else top10" class="inputTop10Div" >
             <h4>You have not chosen your top 10</h4>
             <button (click)="showInput = true" class="btn btn-primary">Create a top 10</button>
             <form #f="ngForm" (ngSubmit)="onSubmit()" *ngIf="showInput">
@@ -31,8 +46,9 @@
 
         <ng-template #top10>
             <div class="list-group">
-                <a routerLink="/movie" class="list-group-item">
-                </a>
+                <div class="list-group-item" *ngFor="let item of user?.top10.top10List; let i = index">
+                    <span>{{i+1}}</span><h4>{{item}}</h4>
+                </div>
             </div>
         </ng-template>
 
