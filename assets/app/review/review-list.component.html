@@ -1,7 +1,9 @@
+<h2 class="title">Reviews:</h2>
+<hr>
 <ul class="list-group">
     <li @fade @leaveView style="position: relative" *ngFor="let review of movie?.reviews" [id]="review._id" class="list-group-item">
         <p>{{review.user.firstName}} {{ review.user.lastName}}<span class="badge"> </span></p>
-        <span (click)="displayModal(review.content, review._id, modal)" class="glyphicon glyphicon-edit" style="position: absolute; right: 50px; top: 20px"></span>
+        <span (click)="displayModal(review.content, review._id, modal)" *ngIf="checkUser(review.user._id)" class="glyphicon glyphicon-edit" style="position: absolute; right: 50px; top: 20px"></span>
         <span (click)="deleteReview(review._id)" *ngIf="checkUser(review.user._id)" style="position: absolute; right: 30px; top: 20px" class="glyphicon glyphicon-remove-circle"></span>
         <hr>
         <p>{{review.content}}</p>

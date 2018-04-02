@@ -19,7 +19,14 @@ var movieChatRoutes = require('./routes/movieChat');
 
 var app = express();
 
-mongoose.connect('mongodb://localhost:27017/moviemeter');
+mongoose.connect('mongodb://tijldc:ikbentijltest1234@ds127589.mlab.com:27589/moviemeter', function (err, done) {
+    if (err){
+      console.log(err)
+    }
+    else {
+      console.log('connected to the database');
+    }
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -49,7 +56,6 @@ app.use('/movies', movieRoutes);
 app.use('/user', userRoutes);
 app.use('/lists', listRoutes);
 app.use('/app', appRoutes);
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -8,7 +8,7 @@
     </div>
     <div class="col col-md-7 ">
         <h1>{{movie?.title}} ({{movie?.year}})</h1>
-        <span class="glyphicon glyphicon-star"></span><span><h1 class="averageRating">{{movie?.averageRating}}</h1></span><br>
+        <span class="glyphicon glyphicon-star"></span><span><h1 class="averageRating">{{movie?.averageRating | number:'1.2-2'}}</h1></span><br>
         <ul class="list-group">
             <li class="list-group-item review" *ngFor="let review of movie?.reviews">
                 <p class="review-content">{{review.user.firstName}} {{review.user.lastName}} <b>|</b> {{review.content}}</p>
@@ -16,9 +16,9 @@
         </ul>
     </div>
 </div>
-    <div class="container col-md-8 col-md-offset-2">
-        <hr>
-    </div>
+
+    <hr>
+
 </div>
 
 
