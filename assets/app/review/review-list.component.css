@@ -1,17 +1,27 @@
-.title {
-    margin-top: 15%;
+.card .fa-pencil-square-o {
+    position: absolute;
+    right: 35px;
+    top:15px;
 }
 
-ul {
-    margin-top: 3%;
+.fa {
+    cursor: pointer;
 }
 
-li {
-    margin-bottom: 10px;
+.card .fa-times-circle-o {
+    position: absolute;
+    right: 15px;
+    top:15px;
 }
+
 
 .list-group-item{
     word-break: break-all;
+}
+
+.fa-times-circle-oe {
+    color: black;
+    font-size: 3em;
 }
 
 

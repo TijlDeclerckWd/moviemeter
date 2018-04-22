@@ -24,6 +24,7 @@
     "@angular/upgrade": "^5.0.0",
     "@auth0/angular-jwt": "^1.0.0-beta.9",
     "@ng-bootstrap/ng-bootstrap": "^1.0.0",
+    "@types/googlemaps": "^3.30.8",
     "angular2-jwt": "^0.2.3",
     "async": "^2.6.0",
     "bcryptjs": "^2.4.3",

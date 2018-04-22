@@ -1,57 +1,57 @@
-<div class="col-md-8 col-offset-2 profile">
+<section id="profile-section" class="profile">
+    <div class="row justify-content-md-center">
+        <div class="col-md-10">
 
-    <div class="profilePicSection">
-        <div *ngIf="!user?.profilePicture.uploaded; else profilePic" class="form-group">
-            <label for="file">Choose File</label>
-            <input type="file"
-                   id="file"
-                   (change)="handleFileInput($event.target.files)">
-        </div>
-        <ng-template #profilePic>
-            <h1>helloooo</h1>
-        </ng-template>
-    </div>
-
-    <hr>
-    <div *ngIf="statistics" class="statisticsSection">
-
-        <h2><u>Statistics:</u></h2>
-
-        <h4>Registered: {{statistics.registerDate | date:'long'}}</h4>
-        <h4>Last Login: {{statistics.lastLogin | date:'long'}}</h4>
-        <br>
-        <h4>Amount of Ratings: {{statistics.amountOfRatings}}</h4>
-        <h4>Average Rating: {{statistics.averageRating | number:'1.0-2'}} </h4>
-        <h4>Standard Deviation: {{statistics.standardDeviation | number:'1.0-2'}}</h4>
-        <br>
-        <h4>Amount Of Reviews: {{statistics.amountOfReviews}}</h4>
-    </div>
-
-    <hr>
-
-    <div class="top10Section">
-        <h2>Top 10:</h2>
-        <div *ngIf="!user?.top10.filledIn; else top10" class="inputTop10Div" >
-            <h4>You have not chosen your top 10</h4>
-            <button (click)="showInput = true" class="btn btn-primary">Create a top 10</button>
-            <form #f="ngForm" (ngSubmit)="onSubmit()" *ngIf="showInput">
-                    <div *ngFor="let input of top10Inputs">
-                        <span>{{input.number}}</span> <input type="text" (keyup)="newInput(inputEl)" value="{{input.value}}" #inputEl class="form-control" name="{{input.number}}" [attr.data-index]="input.numbernumber">
-                        <app-search [number]="input.number" [searchInput]="activeSearch" (chosenMovie)="changeInput($event)"></app-search>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Save Your Top 10</button>
-            </form>
-        </div>
-
-
-        <ng-template #top10>
-            <div class="list-group">
-                <div class="list-group-item" *ngFor="let item of user?.top10.top10List; let i = index">
-                    <span>{{i+1}}</span><h4>{{item}}</h4>
+            <div class="profilePicSection">
+                <div *ngIf="!user?.profilePicture.uploaded; else profilePic" class="form-group">
+                    <label for="file">Choose Profile Picture:</label>
+                    <input type="file" id="file" class="form-control-file" (change)="handleFileInput($event.target.files)">
                 </div>
+
+                <ng-template #profilePic>
+                    <h1>helloooo</h1>
+                </ng-template>
             </div>
-        </ng-template>
 
+            <hr>
+            <div *ngIf="statistics" class="statisticsSection">
+
+                <h2><u>Statistics:</u></h2>
+
+                <h4>Registered: {{statistics.registerDate | date:'long'}}</h4>
+                <h4>Last Login: {{statistics.lastLogin | date:'long'}}</h4>
+                <br>
+                <h4>Amount of Ratings: {{statistics.amountOfRatings}}</h4>
+                <h4>Average Rating: {{statistics.averageRating | number:'1.0-2'}} </h4>
+                <h4>Standard Deviation: {{statistics.standardDeviation | number:'1.0-2'}}</h4>
+                <br>
+                <h4>Amount Of Reviews: {{statistics.amountOfReviews}}</h4>
+            </div>
+
+            <hr>
+
+            <div class="top10Section">
+                <h2>Top 10:</h2>
+                <div *ngIf="!user?.top10.filledIn; else top10" class="inputTop10Div" >
+                    <h4>You have not chosen your top 10</h4>
+                    <button (click)="showInput = true" class="btn btn-primary">Create a top 10</button>
+                    <form #f="ngForm" (ngSubmit)="onSubmit()" *ngIf="showInput">
+                        <div *ngFor="let input of top10Inputs">
+                            <span>{{input.number}}</span> <input type="text" (keyup)="newInput(inputEl)" value="{{input.value}}" #inputEl class="form-control" name="{{input.number}}" [attr.data-index]="input.numbernumber">
+                            <app-search [number]="input.number" [searchInput]="activeSearch" (chosenMovie)="changeInput($event)"></app-search>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Your Top 10</button>
+                    </form>
+                </div>
+
+                <ng-template #top10>
+                    <div class="list-group">
+                        <div class="list-group-item" *ngFor="let item of user?.top10.top10List; let i = index">
+                            <span>{{i+1}}</span><h4>{{item}}</h4>
+                        </div>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
     </div>
-
-</div>
+</section>

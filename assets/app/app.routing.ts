@@ -12,6 +12,7 @@ import {RoleGuardService} from "./auth/role-guard.service";
 import {MovieChatComponent} from "./movie-chat/movie-chat.component";
 import {TrailersComponent} from "./trailers/trailers.component";
 import {ProfileComponent} from "./user/profile.component";
+import {CinemaComponent} from "./cinema/cinema.component";
 
 
 const APP_ROUTES: Routes = [
@@ -24,6 +25,10 @@ const APP_ROUTES: Routes = [
         path: 'toplists',
         component: ToplistsComponent,
         children: TOPLISTS_ROUTES
+    },
+    {
+        path: 'cinema',
+        component: CinemaComponent
     },
     {
         path: 'movies/:id',

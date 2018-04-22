@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     private ngUnsubscribe = new Subject();
     isLoggedIn:Boolean;
     fullName;
-    trailers;
+    trailers:Array<any>;
     trailerIds;
 
     // DOM sanitizer is used for making custom adjustments to embedded youtube videos, it is not used here because
@@ -38,6 +38,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     constructor(public sanitizer: DomSanitizer, private authService: AuthService, private movieService: MovieService){}
 
     ngOnInit(){
+
         if (localStorage.getItem('token') !== null || undefined){
             this.isLoggedIn = true;
             this.fullName = localStorage.getItem('fullName');

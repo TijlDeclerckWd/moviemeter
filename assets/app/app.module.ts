@@ -35,6 +35,8 @@ import {SafePipe, TrailersComponent} from "./trailers/trailers.component";
 import {ProfileComponent} from "./user/profile.component";
 import {SearchComponent} from "./search/search.component";
 import {UserService} from "./user/user.service";
+import {ErrorComponent} from "./errors/error.component";
+import {ErrorService} from "./errors/error.service";
 
 
 
@@ -44,6 +46,7 @@ import {UserService} from "./user/user.service";
         AppComponent,
         CinemaComponent,
         CinemaFeaturedComponent,
+        ErrorComponent,
         HeaderComponent,
         HomeComponent,
         LoginComponent,
@@ -77,6 +80,7 @@ import {UserService} from "./user/user.service";
         MovieService,
         AuthService,
         CinemaService,
+        ErrorService,
         HttpClientModule,
         MovieChatService,
         ReviewService,

@@ -20,7 +20,7 @@ img {
     height: 100%;
 }
 
-.glyphicon-star {
+.fa-star {
     margin-top: 5%;
     color: gold;
     font-size: 3em;
@@ -33,8 +33,16 @@ img {
     top: -5px;
 }
 
+hr {
+    border: none;
+    height: 2px;
+    /* Set the hr color */
+    color: #333; /* old IE */
+    background-color: #333;
+}
+
 .list-group {
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 .list-group-item{
@@ -42,9 +50,5 @@ img {
 }
 
 .list-group-item  p {
-    font-size: 2em;
-}
-
-.review-content {
-    font-size: 2em;
+    font-size: 1.5em;
 }

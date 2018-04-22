@@ -7,6 +7,8 @@ import {bounceOutLeftAnimation, fadeInAnimation} from "../animations";
 import {removeView} from "@angular/core/src/render3/node_manipulation";
 import {reviewListAnimations} from "./review-list.component.animations";
 import {text} from "@angular/core/src/render3/instructions";
+import {AuthService} from "../auth/auth.service";
+import {Router} from "@angular/router";
 
 
 
@@ -19,18 +21,19 @@ import {text} from "@angular/core/src/render3/instructions";
 
 export class ReviewListComponent implements OnInit {
 
+    currentRoute;
     userId;
     movieCopy;
     @Input() movie;
 
-    constructor(private reviewService: ReviewService){}
-
-
+    constructor(private reviewService: ReviewService, private authService: AuthService, private route: Router){}
 
     ngOnInit(){
         this.userId = localStorage.getItem('userId');
         this.movieCopy = this.movie;
+        this.currentRoute = this.route.url;
     }
+
 
     checkUser(reviewUserId){
         return this.userId === reviewUserId;

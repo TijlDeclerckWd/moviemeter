@@ -1,24 +1,33 @@
-
-<div class="container">
-<div class="container col-md-12">
-    <h3>Cinema</h3>
-    <hr>
-    <div class="col col-md-5">
-        <img [src]="movie?.pictureUrl" class="img-responsive" alt="hello">
+<section id="cinema-featured">
+    <div class="row justify-content-md-center">
+        <div class="col-md-10">
+            <h3>Cinema</h3>
+            <hr>
+        </div>
     </div>
-    <div class="col col-md-7 ">
-        <h1>{{movie?.title}} ({{movie?.year}})</h1>
-        <span class="glyphicon glyphicon-star"></span><span><h1 class="averageRating">{{movie?.averageRating | number:'1.2-2'}}</h1></span><br>
-        <ul class="list-group">
-            <li class="list-group-item review" *ngFor="let review of movie?.reviews">
-                <p class="review-content">{{review.user.firstName}} {{review.user.lastName}} <b>|</b> {{review.content}}</p>
-            </li>
-        </ul>
+    <div class="row justify-content-md-center my-3">
+        <div class="col-md-2">
+            <img [src]="movie?.pictureUrl" class="img-fluid" alt="hello">
+        </div>
+        <div class="col-md-3 ">
+            <h1>{{movie?.title}} ({{movie?.year}})</h1>
+            <i class="fa fa-star"></i><span><h1 class="averageRating">{{movie?.averageRating | number:'1.2-2'}}</h1></span><br>
+            <ul class="list-group">
+                <li class="list-group-item review" *ngFor="let review of movie?.reviews">
+                    <p class="review-content">{{review.user.firstName}} {{review.user.lastName}} <b>|</b> {{review.content}}</p>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-2">
+
+        </div>
+        <div class="col-md-3">
+
+        </div>
     </div>
-</div>
+</section>
 
-    <hr>
 
-</div>
+
 
 

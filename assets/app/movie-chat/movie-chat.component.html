@@ -1,34 +1,37 @@
-
-
-<div class="col-md-8 col-md-offset-2">
-<div id="movie-chat">
-    <h2>Movie Chat</h2>
-    <div id="chat-window" #chatWindow>
-    <ul class="list-group">
-        <li
-            [ngClass]="{
-                'leftAligned': !isItMyMsg(message.fullName),
-                'rightAligned': isItMyMsg(message.fullName)
+<section id="movie-chat-section">
+    <div class="row">
+        <div class="col-md-10 mx-auto">
+            <div id="movie-chat">
+                <h5 class="p-3 my-0 font-weight-bold" >Movie Chat</h5>
+                <div id="chat-window" #chatWindow>
+                    <ul class="list-group">
+                        <li
+                                [ngClass]="{
+                'ml-auto': isItMyMsg(message.fullName)
             }"
-            *ngFor="let message of messages"
-            class="list-group-item chat-message"
-        >
-            <p>{{message.fullName}}</p>
-            <p>{{message.message}}</p>
-            <div *ngIf="message.minutesAgo < 60; then list else noList"></div>
-            <ng-template #list>
-                <p class="timestamp">{{message.minutesAgo}} minute(s) ago</p>
-            </ng-template>
-            <ng-template #noList>
-                <p class="timestamp">{{message.minutesAgo/60 | number: '1.0-0'}} hours ago</p>
-            </ng-template>
-        </li>
-    </ul>
+                                *ngFor="let message of messages"
+                                class="list-group-item chat-message"
+                        >
+                            <p>{{message.fullName}}</p>
+                            <p>{{message.message}}</p>
+                            <div *ngIf="message.minutesAgo < 60; then list else noList"></div>
+                            <ng-template #list>
+                                <p class="timestamp">{{message.minutesAgo}} minute(s) ago</p>
+                            </ng-template>
+                            <ng-template #noList>
+                                <p class="timestamp">{{message.minutesAgo/60 | number: '1.0-0'}} hours ago</p>
+                            </ng-template>
+                        </li>
+                    </ul>
+                </div>
+                <p class="my-1 h5" id="fullName">{{fullName}}</p>
+                <input class="" (keyup.enter)="sendMessageToServer(messageInput.value, chatWindow, messageInput)" id="message" type="text" #messageInput placeholder="Message" />
+                <button class="btn btn-warning btn-block py-2 font-weight-bold" (click)="sendMessageToServer(messageInput.value, chatWindow, messageInput)" id="send">Send</button>
+            </div>
+        </div>
+
     </div>
-    <p id="fullName">{{fullName}}</p>
-    <input (keyup.enter)="sendMessageToServer(messageInput.value, chatWindow, messageInput)" id="message" type="text" #messageInput placeholder="Message" />
-    <button (click)="sendMessageToServer(messageInput.value, chatWindow, messageInput)" id="send">Send</button>
-</div>
-</div>
+</section>
+
 
 

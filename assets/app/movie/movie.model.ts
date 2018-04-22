@@ -10,7 +10,8 @@ export class Movie {
         public year: number,
         public ratings: number[],
         public reviews: {}[],
-        public pictureUrl: string
+        public pictureUrl: string,
+        public trailer: string
     ){}
 }
 // also add ratings, reviews array, picture, actors

@@ -1,20 +1,23 @@
-<div @fade>
-    <div class="col-md-8 col-md-offset-2">
-        <h5>Welcome to MovieMeter! <span *ngIf="isLoggedIn"> You are logged in as {{fullName}}</span></h5>
-        <br>
-        <h3>Trailers:</h3>
-        <hr>
-        <ul>
-            <li @fade [routerLink]="['/trailers', trailer.body.items[0].id.videoId]" class="trailerItem" *ngFor="let trailer of trailers">
-                <img src="{{trailer.body.items[0].snippet.thumbnails.high.url}}" alt="nope">
-                <div id="{{trailer.body.items[0].id.videoId}}" #trailerTitle [routerLink]="['/trailers']" [queryParams]="{ids: trailerIds.join('&'), chosenId: trailer.body.items[0].id.videoId}" class="trailerTitle"><h5>{{trailer.movie.title}}</h5></div>
-            </li>
-        </ul>
-        <div>
-            <app-cinema-featured></app-cinema-featured>
+<section id="trailers" class="my-5">
+    <div class="row justify-content-md-center">
+        <div class="col-md-10">
+            <h5 class="text-center font-weight-bold mt-4">Welcome to MovieMeter! <span *ngIf="isLoggedIn"> You are logged in as {{fullName}}</span></h5>
+            <br>
+            <h3>Trailers:</h3>
+            <hr>
+            <div class="row">
+                    <div @fade [routerLink]="['/trailers', trailer.body.items[0].id.videoId]" class="trailerItem col-sm-4" *ngFor="let trailer of trailers">
+                        <img class="img-fluid" src="{{trailer.body.items[0].snippet.thumbnails.high.url}}" alt="nope">
+                        <div id="{{trailer.body.items[0].id.videoId}}" #trailerTitle [routerLink]="['/trailers']" [queryParams]="{ids: trailerIds.join('&'), chosenId: trailer.body.items[0].id.videoId}" class=" btn btn-warning btn-block mt-1"><h5 class="font-weight-bold">{{trailer.movie.title}}</h5></div>
+                    </div>
+            </div>
         </div>
     </div>
-</div>
+</section>
+
+<app-cinema-featured></app-cinema-featured>
+
+
 
 
 

@@ -1,23 +1,25 @@
-<div class="col col-md-8 col-md-offset-2">
-        <div #trailerZone class="trailerZone">
-            <button
-                    [disabled]="!currentIndex"
-                    (click)="currentIndex = currentIndex - 1"
-                    class="btn btn-primary previousButton">Previous
-            </button>
-            <button
-                    [disabled]="currentIndex === videoIds.length - 1"
-                    (click)="currentIndex = currentIndex + 1"
-                    class=" btn btn-primary nextButton">Next
-            </button>
-            <iframe width="100%"
-                    height="100%"
-                    [src]="('https://www.youtube.com/embed/' + videoIds[currentIndex]) | safe"
-                    frameborder="0"
-                    allow="autoplay: encrypted-media"
-                    allowfullscreen="">
-            </iframe>
+<section id="trailer-section">
+    <div class="row justify-content-md-center mt-5">
+        <div class="col-md-10">
+            <div #trailerZone class="trailerZone">
+                <button
+                        [disabled]="!currentIndex"
+                        (click)="currentIndex = currentIndex - 1"
+                        class="btn btn-warning previousButton">Previous
+                </button>
+                <button
+                        [disabled]="currentIndex === videoIds.length - 1"
+                        (click)="currentIndex = currentIndex + 1"
+                        class=" btn btn-warning nextButton">Next
+                </button>
+                <iframe width="100%"
+                        height="100%"
+                        [src]="('https://www.youtube.com/embed/' + videoIds[currentIndex]) | safe"
+                        frameborder="0"
+                        allow="autoplay: encrypted-media"
+                        allowfullscreen="">
+                </iframe>
+            </div>
         </div>
-
-
-</div>
+    </div>
+</section>

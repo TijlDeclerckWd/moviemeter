@@ -1,55 +1,48 @@
-<div class="container">
-    <div class="col col-md-4 col-md-offset-2">
-        <img [src]="movie?.pictureUrl" class="img-responsive" alt="hello">
-    </div>
-    <div class=" col col-md-6">
-        <h2>{{movie?.title}} ({{movie?.year}})</h2>
-        <h3>Average Score:</h3>
-        <span class="glyphicon glyphicon-star"></span><span><h1>{{ averageRating | number:'1.1-2'}}</h1></span><br>
-        <h3>My Score:</h3>
-        <div class="row">
-            <div class="col">
-                <div *ngIf="!checkRating()" ngbDropdown class="d-inline-block">
-                        <button class="btn btn-outline-primary" ngbDropdownToggle>Rate The Movie!</button>
-                        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                            <button value="1" (click)="addRating(1)" class="dropdown-item">1</button>
-                            <button value="2" (click)="addRating(2)" class="dropdown-item">2</button>
-                            <button value="3" (click)="addRating(3)" class="dropdown-item">3</button>
-                            <button value="4" (click)="addRating(4)" class="dropdown-item">4</button>
-                            <button value="5" (click)="addRating(5)" class="dropdown-item">5</button>
-                        </div>
-                    </div>
-                        <div *ngIf="checkRating()">
-                            <h1 class="rating">{{rating}}</h1>
-                        </div>
-            </div>
+<section id="movie-section" class="my-5">
+    <div class="row justify-content-md-center">
+        <div class="col-md-2" style="height:440px;">
+            <img [src]="movie?.pictureUrl" class="img-fluid" alt="hello">
         </div>
-        <h4>{{movie?.director}}</h4>
-        <h4>{{movie?.actors}}</h4>
-        <h4>{{movie?.country}}</h4>
-        <p> {{movie?.description}}</p>
+        <div class="col-md-3" style="height:440px;">
+            <h2>{{movie?.title}} ({{movie?.year}})</h2>
+            <h3>Average Score:</h3>
+            <i class="fa fa-star"></i><span><h1>{{ averageRating | number:'1.1-2'}}</h1></span><br>
+            <h3>My Score:</h3>
+            <div class="row">
+                <div class="col">
+                    <div *ngIf="!authService.isLoggedIn(); else persRate">
+                        <button class="btn btn-warning mb-3" [routerLink]="['/login']" [queryParams]="{returnUrl:currentRoute}"> Please log in to rate the movie</button>
+                    </div>
+                    <ng-template #persRate>
+                        <div *ngIf="!checkRating()" ngbDropdown class="d-inline-block">
+                            <ngb-rating class="stars" [(rate)]="selected" (hover)="hovered=$event" (click)="addRating()" (leave)="hovered=0" max="5"></ngb-rating>
+                            <hr>
+                        </div>
+                        <div *ngIf="checkRating()">
+                            <ngb-rating class="stars" [(rate)]="selected" (hover)="hovered=$event" (click)="addRating()" (leave)="hovered=0" max="5"></ngb-rating>
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+            <h5>Director: {{movie?.director}}</h5>
+            <h5>With {{movie?.actors}}</h5>
+            <h4>{{movie?.country}}</h4>
+            <p> {{movie?.description}}</p>
+        </div>
+        <div *ngIf="movie?.trailer" class="col-md-5 d-none d-md-block" style="height:440px;">
+            <iframe
+                    class="trailer"
+                    width="100%"
+                    height="100%"
+                    [src]="('https://www.youtube.com/embed/' + movie?.trailer) | safe"
+                    frameborder="0"
+                    allow="autoplay: encrypted-media"
+                    allowfullscreen="">
+            </iframe>
+        </div>
     </div>
+</section>
 
-</div>
-
-<hr class="col-md-8 col-md-offset-2">
-
-<div *ngIf="movie?.trailer" class="col-md-8 col-md-offset-2 trailerContainer">
-    <h2 style="text-align:left" class="title">Trailer:</h2>
-    <iframe
-            class="trailer"
-            width="70%"
-            height="100%"
-            [src]="('https://www.youtube.com/embed/' + movie?.trailer) | safe"
-            frameborder="0"
-            allow="autoplay: encrypted-media"
-            allowfullscreen="">
-    </iframe>
-</div>
-
-
-<div class="col-md-8 col-md-offset-2">
-    <ng-container *ngIf="!!movie">
-        <app-review [movie]="movie"></app-review>
-    </ng-container>
-</div>
+<ng-container *ngIf="!!movie">
+    <app-review [movie]="movie"></app-review>
+</ng-container>

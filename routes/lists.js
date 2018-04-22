@@ -19,7 +19,8 @@ router.post('/addmovie', function(req, res, next) {
         year: req.body.year,
         ratings: [],
         reviews: [],
-        pictureUrl: req.body.pictureUrl
+        pictureUrl: req.body.pictureUrl,
+        trailer: req.body.trailer
     });
 
     movie.save(function(err, movie) {

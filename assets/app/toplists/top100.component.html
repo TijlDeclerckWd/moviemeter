@@ -1,23 +1,49 @@
-<div @topListAnimations>
-    <div class="col-md-8 col-md-offset-2 listDiv">
-        <h1 *ngIf="currentRoute==='best'">Best Movies:</h1>
-        <h1 *ngIf="currentRoute==='worst'">Worst Movies:</h1>
-        <h1 *ngIf="currentRoute==='bestNew'">Best New Movies:</h1>
-        <div class="list-group">
-            <a
-                    @fadeIn
-                    [routerLink]="['/movies', movie?._id]"
-                    href="#"
-                    *ngFor="let movie of movies;
-                let i = index"
-                    [attr.data-index]="i"
-                    class="list-group-item"
-            >
-                <h3>{{ i+ 1 }}</h3>
-                <h3>{{movie?.title}}</h3>
-                <span class="glyphicon glyphicon-star"></span>
-                <span><h3>{{movie?.averageRating | number:'1.2-2'}}</h3></span>
-            </a>
+<section id="top100">
+    <div class="row justify-content-md-center">
+        <div class="col-md-10">
+            <h3 *ngIf="currentRoute==='best'">Best Movies:</h3>
+            <h3 *ngIf="currentRoute==='worst'">Worst Movies:</h3>
+            <h3 *ngIf="currentRoute==='bestNew'">Best New Movies:</h3>
+            <table class="table table-hover">
+                <thead class="thead-inverse">
+                <tr>
+                    <th>#</th>
+                    <th>Title</th>
+                    <th>Director</th>
+                    <th>Rating</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr @fadeIn *ngFor="let movie of movies; let i = index" [routerLink]="['/movies', movie?._id]">
+                    <th scope="row">{{i + 1}}</th>
+                    <td>{{movie?.title}}</td>
+                    <td>{{movie?.director}}</td>
+                    <td><i class="fa fa-star"></i>{{movie?.averageRating | number:'1.2-2'}}</td>
+                </tr>
+                </tbody>
+            </table>
+            <!--<div class="list-group">-->
+                <!--<a-->
+                        <!--@fadeIn-->
+                        <!--[routerLink]="['/movies', movie?._id]"-->
+                        <!--href="#"-->
+                        <!--*ngFor="let movie of movies;-->
+                <!--let i = index"-->
+                        <!--[attr.data-index]="i"-->
+                        <!--class="list-group-item"-->
+                <!--&gt;-->
+                    <!--<h3>{{ i+ 1 }}</h3>-->
+                    <!--<h3>{{movie?.title}}</h3>-->
+                    <!--<span class="glyphicon glyphicon-star"></span>-->
+                    <!--<span><h3>{{movie?.averageRating | number:'1.2-2'}}</h3></span>-->
+                <!--</a>-->
+            <!--</div>-->
         </div>
     </div>
-</div>
+</section>
+
+<!--<div @topListAnimations>-->
+    <!--<div class="col-md-8 col-md-offset-2 listDiv">-->
+        <!---->
+    <!--</div>-->
+<!--</div>-->

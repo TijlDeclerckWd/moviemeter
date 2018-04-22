@@ -1,6 +1,10 @@
 import {Component, OnInit} from "@angular/core";
 import {AuthService} from "./auth/auth.service";
 import {MovieService} from "./movie/movie.service";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {User} from "./auth/user.model";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-header',
@@ -13,12 +17,25 @@ export class HeaderComponent implements OnInit {
     searchResults = null;
     searchStatus = 'none';
     websiteStats;
+    mySignupForm;
+    modalReference;
 
-    constructor(private authService: AuthService, private movieService: MovieService){
+    constructor(private authService: AuthService, private movieService: MovieService, private modalService: NgbModal, private route: Router){
     }
 
-    isLoggedIn(){
-        return this.authService.isLoggedIn()
+    ngOnInit(){
+        this.movieService.countData()
+            .subscribe( stats => {
+                this.websiteStats = stats
+            });
+
+        this.mySignupForm = new FormGroup({
+            firstName: new FormControl(null, Validators.required),
+            lastName: new FormControl(null, Validators.required),
+            email: new FormControl(null, Validators.required),
+            password: new FormControl(null, Validators.required),
+        });
+
     }
 
     clearInput(input){
@@ -39,11 +56,38 @@ export class HeaderComponent implements OnInit {
         }
     }
 
-    ngOnInit(){
-        this.movieService.countData()
-            .subscribe( stats => {
-                this.websiteStats = stats
-            });
+    onSignupSubmit() {
+        console.log(this.mySignupForm.value.firstName);
+
+        const user =  new User(
+            this.mySignupForm.value.email,
+            this.mySignupForm.value.password,
+            this.mySignupForm.value.firstName,
+            this.mySignupForm.value.lastName
+        );
+        console.log(user);
+        this.authService.signup(user)
+            .subscribe(
+                data => {
+                    console.log(data);
+                    setTimeout(() => {
+                        this.modalReference.close();
+                        this.mySignupForm.reset();
+                        this.route.navigateByUrl('/login')
+                    }, 2000)
+
+                        ,
+                        error => console.error(error)
+                }
+            );
+    }
+
+    open(content) {
+        this.modalReference = this.modalService.open(content, { size: 'lg', backdrop: 'static' });
+
+        this.modalReference.result.then((result) => {
+            console.log(result);
+        });
     }
 
 

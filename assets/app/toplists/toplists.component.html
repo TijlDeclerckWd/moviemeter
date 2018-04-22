@@ -1,12 +1,16 @@
-<header class="row spacing">
-    <nav class="col-md-8 col-md-offset-2">
-        <ul class="nav nav-tabs">
-            <li routerLinkActive="active"><a routerLink="best">Top 100</a></li>
-            <li routerLinkActive="active"><a routerLink="worst">Worst Movies</a></li>
-            <li routerLinkActive="active"><a routerLink="bestNew">Best New Movies</a></li>
-        </ul>
-    </nav>
+<header class="row justify-content-md-center bg-light">
+    <div class="col-md-10">
+        <nav class="navbar navbar-light bg-light">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link px-2" routerLinkActive="active" routerLink="best" >Top 100</a>
+                <a class="nav-item nav-link px-2" routerLinkActive="active" routerLink="worst">Worst Movies</a>
+                <a class="nav-item nav-link px-2" routerLinkActive="active" routerLink="bestNew">Best New Movies</a>
+            </div>
+        </nav>
+    </div>
 </header>
-<div>
+
+
+
 <router-outlet></router-outlet>
-</div>
+

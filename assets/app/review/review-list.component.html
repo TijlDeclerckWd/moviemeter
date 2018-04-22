@@ -1,16 +1,21 @@
-<h2 class="title">Reviews:</h2>
+<h3 class="title">Reviews:</h3>
 <hr>
-<ul class="list-group">
-    <li @fade @leaveView style="position: relative" *ngFor="let review of movie?.reviews" [id]="review._id" class="list-group-item">
-        <p>{{review.user.firstName}} {{ review.user.lastName}}<span class="badge"> </span></p>
-        <span (click)="displayModal(review.content, review._id, modal)" *ngIf="checkUser(review.user._id)" class="glyphicon glyphicon-edit" style="position: absolute; right: 50px; top: 20px"></span>
-        <span (click)="deleteReview(review._id)" *ngIf="checkUser(review.user._id)" style="position: absolute; right: 30px; top: 20px" class="glyphicon glyphicon-remove-circle"></span>
-        <hr>
-        <p>{{review.content}}</p>
-    </li>
-</ul>
-
-
+<div class="row">
+    <div class="col-xl-8">
+        <ul class="list-group">
+            <div *ngIf="movie?.reviews.length === 0">
+                There are currently no Reviews <span *ngIf="authService.isLoggedIn()">, feel free to leave the first one.</span><br>
+                <div *ngIf="!authService.isLoggedIn()" [routerLink]="['/login']" [queryParams]="{returnUrl:currentRoute}" class="btn btn-warning my-3">Log in To leave the first review</div>
+            </div>
+            <div @fade @leaveView style="position:relative" *ngFor="let review of movie?.reviews" [id]="review._id" class="card text-dark bg-light mb-3">
+                <div class="card-header">{{review.user.firstName}} {{ review.user.lastName}} <i (click)="displayModal(review.content, review._id, modal)" *ngIf="checkUser(review.user._id)" class="fa fa-pencil-square-o text-right"></i><i (click)="deleteReview(review._id)" *ngIf="checkUser(review.user._id)" class="fa fa-times-circle-o text-right"></i></div>
+                <div class="card-body">
+                    <p class="card-text">{{review.content}}</p>
+                </div>
+            </div>
+        </ul>
+    </div>
+</div>
 
 <div #modal id="myModal" class="modal">
 
@@ -18,9 +23,9 @@
     <div class="modal-content">
 
             <span class="close">&times;</span>
-        <h2>Edit your review:</h2>
+        <h4>Edit your review:</h4>
         <textarea #textarea class="form-control textareaEdit" name="edit" cols="30" rows="10"></textarea>
-        <button class="btn btn-primary" type="button" (click)="editReview(this, textarea, modal)">Save</button>
+        <button class="btn btn-warning" type="button" (click)="editReview(this, textarea, modal)">Save</button>
 
     </div>
 

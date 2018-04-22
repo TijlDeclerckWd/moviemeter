@@ -1,0 +1,25 @@
+
+.styled-select {
+    background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0;
+    height: 29px;
+    overflow: hidden;
+    width: 240px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+
+.semi-square {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.options {
+    text-align: center;
+}
+
+#mapArea {
+    margin: 0 auto;
+}
+

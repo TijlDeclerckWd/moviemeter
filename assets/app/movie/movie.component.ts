@@ -1,8 +1,9 @@
 import {Component, OnDestroy, OnInit, Pipe, PipeTransform} from "@angular/core";
 import { MovieService} from "./movie.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Subject} from "rxjs/Subject";
 import {DomSanitizer} from "@angular/platform-browser";
+import {AuthService} from "../auth/auth.service";
 
 
 @Pipe({ name: 'safe' })
@@ -25,9 +26,12 @@ export class MovieComponent implements OnInit, OnDestroy {
     movie;
     movieId;
     averageRating;
+    selected = 0;
+    hovered = 0;
+    currentRoute;
 
 
-    constructor(private movieService: MovieService, private route: ActivatedRoute){
+    constructor(private movieService: MovieService, private activatedRoute: ActivatedRoute, private authService: AuthService, private route: Router){
 
     }
 
@@ -36,17 +40,18 @@ export class MovieComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(){
-        this.route.params.subscribe(params => {
+        this.currentRoute = this.route.url;
+
+        this.activatedRoute.params.subscribe(params => {
            this.movieId = params.id;
 
-            var userId = localStorage.getItem('userId');
+            let userId = localStorage.getItem('userId');
 
             // Here I subscribe to changes made to the average rating, this will be triggered when the user adds his own rating,
             // I'm not sure if this would be a useful feature when there are thousands of ratings, but I wanted to test Subjects and how they work.
             this.movieService.averageRating
                 .takeUntil(this.ngUnsubscribe)
                 .subscribe( averageRating => {
-                    console.log(averageRating);
                     this.averageRating =  averageRating
                 });
 
@@ -55,7 +60,6 @@ export class MovieComponent implements OnInit, OnDestroy {
                 .subscribe(movie => {
                     this.movie = movie.obj;
                     this.movie.averageRating = Number(this.movie.averageRating);
-                    console.log(this.movie);
                 });
 
             if (userId){
@@ -63,19 +67,24 @@ export class MovieComponent implements OnInit, OnDestroy {
                     .takeUntil(this.ngUnsubscribe)
                     .subscribe( result => {
                         this.rating = result.rating;
+                        console.log(result);
+                        this.selected = result.rating;
                     })
             }
         });
     }
 
-    addRating(score) {
+    addRating() {
         let userId = localStorage.getItem('userId');
-
-        this.movieService.addRating(score, userId, this.movie._id)
-            .takeUntil(this.ngUnsubscribe)
-            .subscribe(data => {
-                this.rating = data.obj.rating;
-            });
+        setTimeout( () => {
+            let score = this.selected;
+                this.movieService.addRating(score, userId, this.movie._id)
+                    .takeUntil(this.ngUnsubscribe)
+                    .subscribe(data => {
+                        // console.log(data.obj.rating);
+                        // this.rating = data.obj.rating;
+                    });
+        },500)
     }
 
     ngOnDestroy(){

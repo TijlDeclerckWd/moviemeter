@@ -74,6 +74,14 @@
                     name="image"
                     required
             >
+            <label for="image">Image URL</label>
+            <input
+                    type="text"
+                    id="trailer"
+                    class="form-control"
+                    [ngModel]="message?.content"
+                    name="trailer"
+            >
 
         </div>
         <button type="button" class="btn btn-danger" (click)="onClear(f)">Clear</button>

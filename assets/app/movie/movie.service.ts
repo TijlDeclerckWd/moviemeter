@@ -7,6 +7,7 @@ import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {ErrorObservable} from "rxjs/observable/ErrorObservable";
 import {catchError} from "rxjs/operators";
 import {Subject} from "rxjs/Subject";
+import {ErrorService} from "../errors/error.service";
 
 // We need @injectable if we want to use http
 @Injectable()
@@ -16,7 +17,7 @@ export class MovieService {
     averageRating = new Subject();
     trailerIdArray = '';
 
-constructor(private http: Http, private http2: HttpClient){}
+constructor(private http: Http, private http2: HttpClient, private errorService: ErrorService){}
 
 addMovie(movie: Movie){
 
@@ -35,8 +36,10 @@ addMovie(movie: Movie){
 
         return this.http2.post('http://localhost:3200/ratings/addRating', body)
             // Here I want to automatically update the average score of the movie
-            .map( result => {
-                this.averageRating.next(result.obj.movie.averageRating);
+            .map( (result:any) => {
+
+                this.averageRating.next(result.obj);
+
                 return result;
             })
             .pipe(catchError(this.handleError)
@@ -45,8 +48,10 @@ addMovie(movie: Movie){
 
 countData(){
     return this.http2.get('http://localhost:3200/app/getCounts')
-        .pipe(catchError(this.handleError)
-        )
+        .catch((error: any) => {
+            this.errorService.handleError(error);
+            return Observable.throw(error)
+        })
 }
 
     private handleError(error: HttpErrorResponse) {
@@ -68,7 +73,7 @@ countData(){
 
 getMovie(id) {
     return this.http2.get('http://localhost:3200/lists/getmovie/' + id)
-        .map( result => {
+        .map( (result: any) => {
             console.log(result);
             console.log(result.obj.averageRating);
             this.averageRating.next(Number(result.obj.averageRating));
@@ -93,10 +98,10 @@ getMovie(id) {
 
     getTrailers(){
         return this.http2.get('http://localhost:3200/movies/getTrailers')
-            .map( result => {
-                console.log(result);
+            .map( (result: any) => {
+
                 result.trailerIds = [result.result[0].body.items[0].id.videoId, result.result[1].body.items[0].id.videoId, result.result[2].body.items[0].id.videoId]
-                console.log(result);
+
                 return result;
             })
             .pipe(catchError(this.handleError)

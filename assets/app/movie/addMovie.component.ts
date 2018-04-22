@@ -33,7 +33,8 @@ export class AddMovieComponent implements OnInit {
             form.value.year,
             [],
             [],
-            form.value.image
+            form.value.image,
+            form.value.trailer
        );
         this.movieService.addMovie(movie)
             .subscribe(result => {

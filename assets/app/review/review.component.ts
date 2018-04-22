@@ -2,6 +2,7 @@ import {Component, ElementRef, Input, OnInit, ViewChild} from "@angular/core";
 import {NgForm} from "@angular/forms";
 import {ReviewService} from "./review.service";
 import {ActivatedRoute} from "@angular/router";
+import {AuthService} from "../auth/auth.service";
 
 
 @Component({
@@ -17,7 +18,7 @@ export class ReviewComponent implements OnInit{
     @ViewChild('textArea') textArea;
 
 
-    constructor(private reviewService: ReviewService, private route: ActivatedRoute){}
+    constructor(private reviewService: ReviewService, private route: ActivatedRoute, private authService: AuthService){}
 
     ngOnInit(){
         this.route.params.subscribe( params => {

@@ -20,6 +20,9 @@ export class CinemaService {
                 result.obj.reviews.forEach(function(obj, index){
                    var arr = obj.content.split('');
                     arr.splice(40);
+                    if (arr.length === 40) {
+                        arr.push('...');
+                    }
                     arr = arr.join('');
                    obj.content = arr;
                 });

@@ -2,12 +2,9 @@
     margin-top: 5%;
 }
 
-.col-md-4 img {
-    max-height: 400px;
-    width: 100%;
-}
 
-.glyphicon-star, .glyphicon-star-empty {
+
+.fa-star {
     color: gold;
     font-size: 3em;
 }
@@ -28,10 +25,14 @@ hr {
 
 .trailerContainer {
     text-align: center;
-    height: 500px;
 }
 
 .rating {
     position: relative;
     left: 3%;
+}
+
+.stars {
+    color: gold;
+    font-size: 3em;
 }

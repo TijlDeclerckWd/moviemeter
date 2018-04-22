@@ -3,11 +3,7 @@ import {MovieService} from "../movie/movie.service";
 import {Movie} from "../movie/movie.model";
 import {ToplistsService} from "./toplists.service";
 import {ActivatedRoute} from "@angular/router";
-import {
-    animate, animateChild, query, stagger, style, transition, trigger,
-    useAnimation
-} from "@angular/animations";
-import {fadeInAnimation} from "../animations";
+
 import {topListAnimations} from "./top100.component.animations";
 
 @Component({

@@ -6,6 +6,8 @@ import 'rxjs/rx';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {ErrorObservable} from "rxjs/observable/ErrorObservable";
 import {catchError} from "rxjs/operators";
+import {JwtHelper, tokenNotExpired} from "angular2-jwt";
+import {ErrorService} from "../errors/error.service";
 
 
 // We need @injectable if we want to use http
@@ -13,7 +15,7 @@ import {catchError} from "rxjs/operators";
 
 export class AuthService {
 
-    constructor(private http: Http, private http2: HttpClient){}
+    constructor(private http: Http, private http2: HttpClient, private errorService: ErrorService){}
 
     private handleError(error: HttpErrorResponse) {
         if (error.error instanceof ErrorEvent) {
@@ -30,6 +32,12 @@ export class AuthService {
         return new ErrorObservable(
             'Something bad happened; please try again later.');
     };
+
+    currentUser() {
+        let token = localStorage.getItem('token');
+        if (!token) return null;
+        return new JwtHelper().decodeToken(token);
+    }
 
     getUser(userId){
         const headers =  new Headers({'Content-Type': 'application/json'});
@@ -88,8 +96,12 @@ export class AuthService {
         const body = JSON.stringify(user);
         const headers =  new Headers({'Content-Type': 'application/json'});
         return this.http.post('http://localhost:3200/user/signin', body, {headers: headers})
-            .map((response: Response) => response.json())
+            .map((response: Response) => {
+                console.log(response.json());
+                return response.json()
+            })
             .catch((error: Response) => {
+                this.errorService.handleError(error.json());
                 return Observable.throw(error.json());
             })
     }
@@ -104,6 +116,6 @@ export class AuthService {
     }
 
     isLoggedIn() {
-        return localStorage.getItem('token') !== null;
+        return tokenNotExpired();
     }
 }
