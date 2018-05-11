@@ -111,6 +111,7 @@ export class AuthService {
            .map((response: Response) => response.json())
     }
 
+
     logout() {
         localStorage.clear();
     }

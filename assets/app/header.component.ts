@@ -35,7 +35,6 @@ export class HeaderComponent implements OnInit {
             email: new FormControl(null, Validators.required),
             password: new FormControl(null, Validators.required),
         });
-
     }
 
     clearInput(input){
@@ -65,11 +64,10 @@ export class HeaderComponent implements OnInit {
             this.mySignupForm.value.firstName,
             this.mySignupForm.value.lastName
         );
-        console.log(user);
+
         this.authService.signup(user)
             .subscribe(
                 data => {
-                    console.log(data);
                     setTimeout(() => {
                         this.modalReference.close();
                         this.mySignupForm.reset();

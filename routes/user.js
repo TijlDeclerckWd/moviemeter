@@ -158,11 +158,10 @@ router.post('/signin', function(req, res, next) {
             res.status(200).json({
                 message: 'Successfully logged in',
                 token: token,
-                userId: user._id,
                 fullName: user.firstName + ' ' + user.lastName
             });
         });
-    })
+    });
 });
 
 router.post('/uploadProfilePicture/:userId', upload.single('fileKey'), function(req, res){

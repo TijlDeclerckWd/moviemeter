@@ -86,7 +86,6 @@ export class CinemaComponent implements OnInit {
     getLocations(){
         this.interest = document.getElementById("interest").value;
         this.distance = document.getElementById("distance").value;
-        console.log(this.distance);
 
         if (this.interest == "default"){
             alert("You have to select a point of interest")

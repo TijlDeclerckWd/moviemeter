@@ -20,6 +20,30 @@ export class MovieChatComponent implements OnInit{
 
     }
 
+    scrollToBottom(){
+        // selectors
+
+       setTimeout(() => {
+           //selectors
+           let chatWindow = this.movieChatElem;
+           let listEl = chatWindow.firstElementChild;
+           let newMessage = listEl.children[listEl.children.length-1];
+
+           // Heights
+           let clientHeight = chatWindow.clientHeight;
+           let scrollTop = chatWindow.scrollTop;
+           let scrollHeight = chatWindow.scrollHeight;
+
+           let newMessageHeight =  newMessage.offsetHeight;
+           let lastImageHeight = newMessage.previousSibling.offsetHeight;
+
+
+           if (clientHeight + scrollTop + newMessageHeight + lastImageHeight >= scrollHeight){
+               chatWindow.scrollTop = scrollHeight;
+           }
+       },0)
+    }
+
     ngOnInit(){
         this.fullName = localStorage.getItem('fullName');
         this.url = 'ws://localhost:3185';
@@ -27,7 +51,7 @@ export class MovieChatComponent implements OnInit{
             .subscribe(obj => {
                 let index = this.messages.length;
                 this.messages.push(obj);
-                this.movieChatElem.scrollTop = this.movieChatElem.scrollHeight - this.movieChatElem.clientHeight;
+                this.scrollToBottom();
                 this.movieChatService.startTimeCalculations
                     .subscribe( result => {
                         this.messages[index].minutesAgo++;
@@ -35,7 +59,6 @@ export class MovieChatComponent implements OnInit{
                 },
                 err => console.log(err),
                 () => console.log('The observable stream, is complete'));
-
     }
 
 
@@ -48,7 +71,6 @@ export class MovieChatComponent implements OnInit{
                 message: message,
                 fullName: this.fullName
             });
-
     }
 
     isItMyMsg(fullName){
